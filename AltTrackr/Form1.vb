@@ -32,6 +32,8 @@ Public Class Form1
             ShowInTaskbar = False
         End If
 
+        Me.TopMost = False
+        WinDesktop.AttachFormToDesktop(Me)
     End Sub
 
 
@@ -98,5 +100,9 @@ Public Class Form1
 
     Private Sub tmrRefresh_Tick(sender As Object, e As EventArgs) Handles tmrRefresh.Tick
         webView.Reload()
+    End Sub
+
+    Private Sub webView_LoadCompleted(sender As Object, e As LoadCompletedEventArgs) Handles webView.LoadCompleted
+        lblLoading.Visible = False
     End Sub
 End Class

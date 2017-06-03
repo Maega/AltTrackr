@@ -22,8 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.webControl = New EO.WinForm.WebControl()
         Me.webView = New EO.WebBrowser.WebView()
+        Me.tmrRefresh = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'webControl
@@ -41,6 +43,11 @@ Partial Class Form1
         '
         'webView
         '
+        '
+        'tmrRefresh
+        '
+        Me.tmrRefresh.Enabled = True
+        Me.tmrRefresh.Interval = 60000
         '
         'Form1
         '
@@ -61,4 +68,5 @@ Partial Class Form1
 
     Friend WithEvents webControl As EO.WinForm.WebControl
     Friend WithEvents webView As EO.WebBrowser.WebView
+    Friend WithEvents tmrRefresh As Timer
 End Class

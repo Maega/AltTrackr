@@ -92,7 +92,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0.7")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0.9")>  _
         Public Property appOpacity() As Double
             Get
                 Return CType(Me("appOpacity"),Double)
@@ -123,6 +123,42 @@ Namespace My
             End Get
             Set
                 Me("tickerCoin") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property appLocationX() As Integer
+            Get
+                Return CType(Me("appLocationX"),Integer)
+            End Get
+            Set
+                Me("appLocationX") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property appLocationY() As Integer
+            Get
+                Return CType(Me("appLocationY"),Integer)
+            End Get
+            Set
+                Me("appLocationY") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("60000")>  _
+        Public Property tickerInterval() As Integer
+            Get
+                Return CType(Me("tickerInterval"),Integer)
+            End Get
+            Set
+                Me("tickerInterval") = value
             End Set
         End Property
     End Class

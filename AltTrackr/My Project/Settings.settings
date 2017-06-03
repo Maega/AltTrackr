@@ -12,13 +12,22 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="appOpacity" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.7</Value>
+      <Value Profile="(Default)">0.9</Value>
     </Setting>
     <Setting Name="tickerFiat" Type="System.String" Scope="User">
       <Value Profile="(Default)">usd</Value>
     </Setting>
     <Setting Name="tickerCoin" Type="System.String" Scope="User">
       <Value Profile="(Default)">monero</Value>
+    </Setting>
+    <Setting Name="appLocationX" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="appLocationY" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="tickerInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

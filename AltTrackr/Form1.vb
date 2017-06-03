@@ -9,23 +9,22 @@ Public Class Form1
     Public widgetURL As String = "https://www.coingecko.com/en/widget_component/ticker/"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'webView.LoadHtml(" < a href='https://www.coingecko.com/en/price_charts/monero/usd' target='_blank'><img alt='monero price' src='https://www.coingecko.com/en/widget_component/ticker/monero/usd.jpg'></a>")
-        'webView.LoadHtml("<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><iframe id='widget-ticker-preview' src='//www.coingecko.com/en/widget_component/ticker/monero/usd' style='border:none; height:125px; width: 275px;' scrolling='no' frameborder='0' allowtransparency='true'></iframe></body></html>")
-        'webView.LoadHtml("<iframe id='widget-ticker-preview' src='//www.coingecko.com/en/widget_component/ticker/monero/usd' style='border:none; height:125px; width: 275px;' scrolling='no' frameborder='0' allowtransparency='true'></iframe>")
-        'webView.LoadHtml("<html><b>test</b></html>")
-        'WebBrowser1.DocumentText = "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body><iframe id='widget-ticker-preview' src='//www.coingecko.com/en/widget_component/ticker/monero/usd' style='border:none; height:125px; width: 275px;' scrolling='no' frameborder='0' allowtransparency='true'></iframe></body></html>"
+        'You'll need a license for EO.WebBrowser 17.1.65 (unless updated - downgrading seems to break things) to remove the message that appears when the library is loaded.
+        'EO.WebBrowser.Runtime.AddLicense("")
+
+        Me.Location = New Point(My.Settings.appLocationX, My.Settings.appLocationY)
 
         Me.Width = My.Settings.appWidth
-        'webControl.Width = My.Settings.appWidth
         Me.Height = My.Settings.appHeight
-        'webControl.Height = My.Settings.appHeight
         webView.LoadUrl(widgetURL + My.Settings.tickerCoin + "/" + My.Settings.tickerFiat)
 
-        'Attach event handler
+        'Attach event handlers
         AddHandler webView.BeforeContextMenu, New BeforeContextMenuHandler(AddressOf WebView_BeforeContextMenu)
         AddHandler webView.Command, New CommandHandler(AddressOf nRef_Command)
+        AddHandler webView.NewWindow, New NewWindowHandler(AddressOf WebView_NewWindow)
 
         Me.Opacity = My.Settings.appOpacity
+        tmrRefresh.Interval = My.Settings.tickerInterval
 
         If My.Settings.appTaskbarIcon = True Then
             ShowInTaskbar = True
@@ -83,5 +82,21 @@ Public Class Form1
         e.Menu.Items.Add(New EO.WebBrowser.MenuItem("Toggle Taskbar Icon", nTaskIconCommand))
         e.Menu.Items.Add(EO.WebBrowser.MenuItem.CreateSeparator())
         e.Menu.Items.Add(New EO.WebBrowser.MenuItem("Quit", nExitCommand))
+    End Sub
+
+    Private Sub WebView_NewWindow(sender As Object, e As NewWindowEventArgs)
+        'Below signifies that we accept the new WebView. Without this line
+        'the newly created WebView will be immediately destroyed...
+        'e.Accepted = True
+        Process.Start(e.TargetUrl)
+    End Sub
+
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        My.Settings.appLocationX = CInt(Me.Location.X)
+        My.Settings.appLocationY = CInt(Me.Location.Y)
+    End Sub
+
+    Private Sub tmrRefresh_Tick(sender As Object, e As EventArgs) Handles tmrRefresh.Tick
+        webView.Reload()
     End Sub
 End Class

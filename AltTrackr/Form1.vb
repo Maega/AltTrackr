@@ -32,8 +32,6 @@ Public Class Form1
             ShowInTaskbar = False
         End If
 
-        Me.TopMost = False
-        WinDesktop.AttachFormToDesktop(Me)
     End Sub
 
 

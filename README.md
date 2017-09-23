@@ -7,3 +7,5 @@ Click and drag the widget around to move it, it'll remember where you put it for
 
 Primitive UI, but that happens with only a couple hours of devtime. <br />
 Feel free to expand on AltTrackr, or do whatever you like with it. Effectively licensed under WTFPL.
+
+The AltTrackr Widget has been deprecated, a fully fledged crypto tracker and wallet is under development at https://github.com/Maega/AltTrackr2
